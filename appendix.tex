@@ -1,0 +1,50 @@
+% ---- APPENDIX
+\pagenumbering{gobble} % sets off page numbering on this page
+\chapter*{\centering \huge Appendix} % creates unnumbered centered heading on page
+
+\clearpage
+\newpage
+
+% TOC Anhang
+\pagenumbering{gobble}
+\appendixwithtoc 
+\addcontentsline{toc}{chapter}{Anhang} % adds unnumbered chapter in table of contents
+\addtocontents{toc}{\medskip} % adds spacing in the table of contents
+\clearpage
+\newpage
+\pagenumbering{Roman} % continues roman page numbering 
+
+\chapter{First Heading} \label{apx:first-heading}
+
+\section{Second heading} \label{apx:second-heading}
+
+\section{Second heading}
+
+% include multi-page PDF document
+% include first page of PDF document 
+\includepdf[pages=1, pagecommand={\section{Name of section} \label{pdf-1}}, scale=0.9, picturecommand*={\label{pdf:pdf-1}}]{./pdf/pdf-1.pdf}
+
+% include all other pages of PDF document
+\includepdf[pages=2-, pagecommand={}, scale=0.9]{./pdf/pdf-1.pdf}
+
+\newpage
+
+% include single-page PDF document
+\includepdf[pages=-, pagecommand={}, scale=0.9, picturecommand*={\label{pdf:pdf-2}}]{./pdf/pdf-2.pdf}
+
+\chapter{First Heading} \label{apx:first-heading}
+
+\section{Second heading} \label{apx:second-heading}
+
+\section{Second heading}
+
+% Declaration (of authorship, of originality)
+\chapter{Declaration}
+Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo.\par
+\setlength{\parskip}{1em}
+\setlength{\parindent}{0pt}
+Lorem ipsum dolor sit amet, consectetuer adipiscing elit.\par
+\setlength{\parskip}{4em}
+City, dd. month yyyy \hfill
+First and last name
+% --------------------------------------------------------------

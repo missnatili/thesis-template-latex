@@ -1,0 +1,331 @@
+% ---- PREAMBLE
+\documentclass[11pt,a4paper]{scrreprt}
+\usepackage[ngerman]{babel} % loads language package 
+\usepackage{lmodern} % sets serif font for body text
+\usepackage[a4paper,left=3cm,right=3cm,top=2.5cm,bottom=4cm,bindingoffset=5mm]{geometry}
+\usepackage{chngcntr} % changes the resetting of counters
+\usepackage{booktabs} % enhances the quality of tables
+\usepackage{pdfpages} % includes PDF documents
+\usepackage{lscape} % places selected parts of a document in landscape
+\usepackage{placeins} % limits the floating of figures or tables
+\usepackage[T1]{fontenc} % loads package if your using German "Umlaute" (ö, ü, ä, ß) to separate words
+\usepackage[utf8]{inputenc} % encoding
+\usepackage{url} % package for links
+\usepackage[printonlyused, withpage]{acronym} % creates list of abbreviations
+\usepackage{helvet} % adds sans-serif font for headings
+\usepackage{blindtext} % creates blindtext, only necessary for sample template
+\usepackage[hidelinks]{hyperref} % turns off boxes around links in PDF
+\usepackage{csquotes} % package for display quotations
+
+\counterwithout{footnote}{chapter} 
+
+\usepackage{graphicx} % package to include images
+\graphicspath{ {./img/} } % defines folder path for images
+
+% Creates separate table of contents for appendix
+\DeclareNewTOC[%
+  owner=\jobname,
+  listname={\contentsname~(\appendixname)}, % title of the appendix ToC
+]{atoc}
+
+\makeatletter
+\newcommand*\appendixwithtoc{%
+  \appendix
+  \renewcommand*{\ext@toc}{atoc}%
+  \scr@ifundefinedorrelax{hypersetup}{}{\hypersetup{bookmarkstype=atoc}}%
+  \listofatocs
+}
+\makeatother
+
+% Table settings
+\usepackage{longtable}
+\usepackage{array,ragged2e}
+\newcolumntype{P}[1]{>{\RaggedRight\arraybackslash}p{#1}}
+
+% Bibliography Management
+\usepackage[
+    backend=biber,
+    style=apa,
+    ]{biblatex}
+\addbibresource{bibliography.bib} % include file name of your list of references
+
+% Typography settings
+\linespread{1.3}
+\addtokomafont{chapter}{\LARGE\sffamily}
+\addtokomafont{section}{\Large\sffamily}
+\addtokomafont{subsection}{\large\sffamily}
+\addtokomafont{subsubsection}{\normalsize\sffamily}
+\setkomafont{disposition}{\normalcolor\bfseries}
+
+% Define terms for cross-references
+\addto\extrasngerman{
+  \def\chapterautorefname{Kapitel}
+  \def\sectionautorefname{Abschnitt}
+  \def\subsectionautorefname{Abschnitt}
+  \def\subsubsectionautorefname{Abschnitt}
+  \def\figureautorefname{Abbildung}
+  \def\tableautorefname{Tabelle}
+  \def\appendixautorefname{Anhang}
+  \def\pageautorefname{Seite}
+}
+
+% Header and footer settings for all pages
+\pagestyle{headings}
+
+\usepackage{fancyhdr}
+
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{\nouppercase{\leftmark}}
+\rfoot{\thepage}
+
+% Header and footer settings for chapter pages
+\fancypagestyle{plain}{
+\fancyhf{}
+\renewcommand\headrulewidth{0pt} % turns off horizontal line in header
+\fancyfoot[R]{\thepage}
+}
+
+% --------------------------------------------------------------
+
+% ---- DOCUMENT
+\begin{document}
+\thispagestyle{empty}
+
+% ---- Deckblatt
+\begin{titlepage}
+    \begin{center} \normalsize
+        
+        % include logo of your university
+        \begin{figure}
+            \includegraphics[height=2cm]{logo}  
+        \end{figure}
+
+        \vspace*{1.0cm}
+
+        {\large Master's thesis}
+        \vspace*{2.0cm}
+
+        {\LARGE \textbf{Title of your thesis}}
+        \vspace*{0.5cm}
+    
+        {\large \textbf{Subtitle of your thesis}}
+        \vspace*{2.5cm}
+    
+    \end{center}
+    
+    \begin{flushleft}
+        {\small
+        \begin{tabular}{ll}\\
+            Submitted by:  & \quad <first and last name>  \\
+            Submitted on: & \quad <dd. month yyyy> \\
+            Editing period: & \quad <dd. month yyyy to dd. month yyyy> \\
+            Student number: & \quad <00000> \\
+            Study programme: & \quad <study programme> \\
+            Address: & \quad <address> \\
+            E-mail: & \quad <e-mail address> \\
+            & \\
+            First examiner:  & \quad <name and title of first examiner> \\
+            Second examiner: & \quad <name and title of second examiner> \\
+            & \\
+            % optional if you are writing your thesis within a company
+            Company: & \quad <name of company> \\
+            & \quad <address of company> \\
+            & \\
+            Educational institution: & \quad <name of university> \\
+            & \quad <name of faculty or department> \\
+            & \quad <address of university> \\
+        \end{tabular}
+        }
+        
+    \end{flushleft}
+
+\end{titlepage}
+% --------------------------------------------------------------
+\newpage
+
+% ---- Abstract
+\section*{Abstract}
+\thispagestyle{empty}
+
+% Abstract in first language
+Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue.
+
+\bigskip
+\noindent
+% Abstract in English (if necessary)
+Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue.
+
+% --------------------------------------------------------------
+
+% ---- Table of Contents
+\addtocontents{toc}{\protect\thispagestyle{empty}}
+\addtocontents{toc}{\protect\pagestyle{empty}}
+\tableofcontents
+\pagenumbering{gobble}
+\clearpage
+% --------------------------------------------------------------
+\pagenumbering{roman}
+
+% ---- List of Figures
+\cleardoublepage
+\phantomsection
+\addcontentsline{toc}{chapter}{\listfigurename}
+\listoffigures
+% --------------------------------------------------------------
+
+% ---- List of Tables
+\cleardoublepage
+\phantomsection
+\addcontentsline{toc}{chapter}{\listtablename}
+\listoftables
+% --------------------------------------------------------------
+
+% ---- List of Abbreviations
+
+\chapter*{List of Abbreviations}
+
+\addcontentsline{toc}{chapter}{List of Abbreviations}
+\addtocontents{toc}{\medskip}
+
+% Acronym definitions
+\begin{acronym}[UX] % write in the square brackets the longest acronym
+    \acro{ux}[UX]{User Experience} % set your acronyms as in the example
+\end{acronym}
+
+\clearpage
+% --------------------------------------------------------------
+
+\pagenumbering{arabic} % starts page numbering in arabic numbers
+
+% ---- Introduction
+\chapter{Introduction} \label{chap:introduction}
+
+Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc.
+
+% ---- Theory
+\chapter{First Heading} \label{chap:first-heading}
+
+\section{Second Heading} \label{sec:second-heading}
+
+\subsection{Third Heading} \label{subsec:third-heading}
+
+Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc.
+
+% Template for display quotations
+\begin{displayquote}
+Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.
+\end{displayquote}
+\noindent
+
+Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc.\footnote{Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.}
+
+\subsection{Third Heading} 
+
+Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. 
+
+% Template for bullet list
+\begin{itemize}
+    \item Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.
+    \item Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.
+    \item Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.
+\end{itemize}
+\noindent
+
+Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.
+
+\section{Second Heading}
+
+Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc.
+
+\subsection{Third Heading}
+
+Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus.
+
+% Template for simple table
+\begin{table}[!h]
+    \centering
+    \begin{tabular}{lll} 
+        \toprule
+        \textbf{Column 1} & \textbf{Column 2} & \textbf{Column 3} \\
+        \midrule
+        Lorem ipsum & Lorem ipsum & Lorem ipsum \\
+        Lorem ipsum & Lorem ipsum & Lorem ipsum \\
+        Lorem ipsum & Lorem ipsum & Lorem ipsum \\
+        Lorem ipsum & Lorem ipsum & Lorem ipsum \\
+        Lorem ipsum & Lorem ipsum & Lorem ipsum \\
+        Lorem ipsum & Lorem ipsum & Lorem ipsum \\
+        \bottomrule
+    \end{tabular}
+    \caption{Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim}
+    \label{table:table-lable}
+\end{table}
+\noindent
+
+\subsection{Third Heading}
+
+Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus.
+
+\subsubsection{Fourth Heading}
+
+Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc.
+
+\subsubsection{Fourth Heading}
+
+Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc.
+
+\chapter{First Heading} \label{chap:first-heading}
+
+\section{Second Heading} \label{sec:second-heading}
+
+Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium.
+
+% Template for long table 
+\FloatBarrier
+\begin{longtable}{P{0.3\textwidth}P{0.65\textwidth}}
+    \toprule
+    \textbf{Column 1} & \textbf{Column 2} \\
+    \midrule
+    Lorem ipsum dolor sit amet, consectetuer adipiscing elit. & Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. \\
+    \midrule
+    Lorem ipsum dolor sit amet, consectetuer adipiscing elit. & Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. \\
+    \midrule
+    Lorem ipsum dolor sit amet, consectetuer adipiscing elit. & Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. \\
+    \midrule
+    Lorem ipsum dolor sit amet, consectetuer adipiscing elit. & Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. \\
+    \midrule
+    Lorem ipsum dolor sit amet, consectetuer adipiscing elit. & Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. \\
+    \midrule
+    Lorem ipsum dolor sit amet, consectetuer adipiscing elit. & Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. \\
+    \bottomrule
+    \caption{Lorem ipsum dolor sit amet, consectetuer adipiscing elit}
+    \label{table:table-lable}
+\end{longtable}
+\FloatBarrier
+
+\section{Second Heading} \label{sec:second-heading}
+
+Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc.
+
+% Template to include image
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=\textwidth]{image-name}
+    \caption[Lorem ipsum dolor sit amet, consectetuer adipiscing elit]{Lorem ipsum dolor sit amet, consectetuer adipiscing elit} % write caption visible in list of images in square brackets
+    \label{fig:image-label}
+\end{figure}
+\noindent
+
+% --------------------------------------------------------------
+
+% ---- Bibliography
+% \nocite{*} % Uncomment to print all references, not only used references in text
+\printbibliography[heading=bibintoc,title={Bibliography}]
+\newpage
+% --------------------------------------------------------------
+
+% ---- APPENDIX
+\input{appendix.tex} % includes separate appendix file at this point
+% --------------------------------------------------------------
+
+\end{document}
