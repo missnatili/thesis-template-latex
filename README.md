@@ -12,3 +12,10 @@ The file bibliography.bib is an empty file, where you can add your entries.
 
 ## Images and PDFs
 The folders img and pdf contain your images or pdf files.
+
+![First screenshot of LaTex document](/img/1.png)
+![First screenshot of LaTex document](/img/2.png)
+![First screenshot of LaTex document](/img/3.png)
+![First screenshot of LaTex document](/img/4.png)
+
+
