@@ -13,9 +13,9 @@ The file bibliography.bib is an empty file, where you can add your entries.
 ## Images and PDFs
 The folders img and pdf contain your images or pdf files.
 
-![First screenshot of LaTex document](/img/1.png)
-![First screenshot of LaTex document](/img/2.png)
-![First screenshot of LaTex document](/img/3.png)
-![First screenshot of LaTex document](/img/4.png)
+![First screenshot of LaTex document](https://github.com/missnatili/thesis-template-latex/blob/main/img/1.PNG)
+![First screenshot of LaTex document](https://github.com/missnatili/thesis-template-latex/blob/main/img/2.PNG)
+![First screenshot of LaTex document](https://github.com/missnatili/thesis-template-latex/blob/main/img/3.PNG)
+![First screenshot of LaTex document](https://github.com/missnatili/thesis-template-latex/blob/main/img/4.PNG)
 
 
